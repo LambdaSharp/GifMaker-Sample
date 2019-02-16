@@ -1,0 +1,66 @@
+# MindTouch λ#
+# Copyright (C) 2018-2019 MindTouch, Inc.
+# www.mindtouch.com  oss@mindtouch.com
+#
+# For community documentation and downloads visit mindtouch.com;
+# please review the licensing section.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+Module: LambdaSharp.Demo.GifMaker
+Description: Lambda function for creating animated GIFs from videos
+Items:
+
+  # Optional module parameters
+  - Parameter: VideoBucket
+    Description: S3 Bucket for uploading videos
+    Section: GifMaker Settings
+    Label: Video Source Bucket
+    Type: AWS::S3::Bucket
+    Allow: Full
+    Default: ""
+
+  - Parameter: AnimatedGifBucket
+    Description: S3 Bucket for storing the generated animated GIFs
+    Section: GifMaker Settings
+    Label: Animated GIF Destination Bucket
+    Scope: MakeGifFunction
+    Type: AWS::S3::Bucket
+    Allow: ReadWrite
+    Default: ""
+
+  # Functional resources
+  - Function: MakeGifFunction
+    Description: Function for converting videos to animated GIFs
+    Memory: 1024
+    Timeout: 300
+    Properties:
+      Layers:
+        - !Ref FFmpeg::Layer
+    Sources:
+      - S3: VideoBucket
+
+  - Namespace: FFmpeg
+    Description: Create Lambda layer with FFmpeg binary
+    Items:
+
+      - Resource: Layer
+        Type: AWS::Lambda::LayerVersion
+        Properties:
+          LicenseInfo: GPL-3.0-only
+          Content:
+            S3Bucket: !Ref DeploymentBucketName
+            S3Key: !Ref FFmpeg::Package
+
+      - Package: Package
+        Files: Assets/FFmpeg-Layer/
