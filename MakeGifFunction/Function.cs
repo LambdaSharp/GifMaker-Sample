@@ -32,7 +32,7 @@ namespace LambdaSharp.Demo.GifMaker.MakeGifFunction {
             _destinationBucketName = config.ReadS3BucketName("AnimatedGifBucket");
         }
 
-        public override async Task<string> ProcessMessageAsync(S3Event request, ILambdaContext context) {
+        public override async Task<string> ProcessMessageAsync(S3Event request) {
             LogInfo($"received {request.Records.Count} records");
 
             // process records
