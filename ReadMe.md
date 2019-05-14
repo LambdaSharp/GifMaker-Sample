@@ -1,6 +1,6 @@
 # λ# - Create Animated GIFs from Videos with AWS Lambda
 
-[This sample requires the λ# tool to deploy.](https://lambdasharp.github.io/)
+[This sample requires the λ# tool to deploy.](https://lambdasharp.net/)
 
 ## Overview
 
