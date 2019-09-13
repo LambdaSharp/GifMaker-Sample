@@ -1,14 +1,14 @@
-# λ# - Create Animated GIFs from Videos with AWS Lambda
+# LambdaSharp - Create Animated GIFs from Videos with AWS Lambda
 
-[This sample requires the λ# tool to deploy.](https://lambdasharp.net/)
+[This sample requires the LambdaSharp CLI to deploy.](https://lambdasharp.net/)
 
 ## Overview
 
-This λ# module creates a Lambda function that converts videos to animated GIFs. The conversion is done by the [FFmpeg application](https://www.ffmpeg.org/) which is deployed as a [Lambda Layer](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html). The module uses two S3 buckets: one for uploading videos and one for storing the converted animated GIFs. The Lambda function is automatically invoked when a file is uploaded the video S3 bucket.
+This LambdaSharp module creates a Lambda function that converts videos to animated GIFs. The conversion is done by the [FFmpeg application](https://www.ffmpeg.org/) which is deployed as a [Lambda Layer](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html). The module uses two S3 buckets: one for uploading videos and one for storing the converted animated GIFs. The Lambda function is automatically invoked when a file is uploaded the video S3 bucket.
 
 ## Deploy
 
-This module is compiled to CloudFormation and deployed using the λ# CLI.
+This module is compiled to CloudFormation and deployed using the LambdaSharp CLI.
 
 ```
 git clone https://github.com/LambdaSharp/GifMaker-Sample.git

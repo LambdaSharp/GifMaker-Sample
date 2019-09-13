@@ -13,7 +13,7 @@ using LambdaSharp;
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
 
-namespace LambdaSharp.Demo.GifMaker.MakeGifFunction {
+namespace Demo.GifMaker.MakeGifFunction {
 
     public class Function : ALambdaFunction<S3Event, string> {
 
